@@ -1,7 +1,7 @@
 ControllerSelect = class('ControllerSelect', GameState)
 ControllerSelect.static.MIN_PLAYERS = 2 -- The minimum number of players required to start a game.
-ControllerSelect.static.MAX_PLAYERS = 4 -- The maximum number of players that can be in a game.
-ControllerSelect.static.CARDS_PER_ROW = 4 -- The number of device cards that should be shown per row.
+ControllerSelect.static.MAX_PLAYERS = 2 -- The maximum number of players that can be in a game.
+ControllerSelect.static.CARDS_PER_ROW = 2 -- The number of device cards that should be shown per row.
 ControllerSelect.static.TITLE_FONT = love.graphics.newFont(30) -- Font for displaying information in this menu.
 ControllerSelect.static.BUTTONS = {'action', 'special', 'pause'} -- Buttons that must be bound for every player.
 ControllerSelect.static.AXES = {'left', 'right', 'up', 'down'} -- Axes that must be bound for every player.
@@ -87,7 +87,7 @@ function ControllerSelect:initialize(continuation)
   GameState.initialize(self)
   self.continuation = continuation
   local rows = math.ceil(ControllerSelect.MAX_PLAYERS / ControllerSelect.CARDS_PER_ROW)
-  local padding = 20
+  local padding = 50
 
   self.cards = {}
   for i=1, ControllerSelect.MAX_PLAYERS do
@@ -127,6 +127,14 @@ function ControllerSelect:numberOfJoinedDevices()
 end
 
 function ControllerSelect:draw()
+  Color.RED:use()
+  love.graphics.rectangle('fill', 0, 0, love.graphics.getWidth() / 2,
+  	love.graphics.getHeight())
+
+  Color.BLUE:use()
+  love.graphics.rectangle('fill', love.graphics.getWidth() / 2, 0,
+  	love.graphics.getWidth() / 2, love.graphics.getHeight())
+  
   GameState.draw(self)
   Color.WHITE:use()
   love.graphics.setFont(ControllerSelect.TITLE_FONT)

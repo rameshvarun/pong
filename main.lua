@@ -1,5 +1,5 @@
 -- Global 'DEBUG' flag
-DEBUG = false 
+DEBUG = true 
 
 require 'utils' -- Load in utilities.
 
